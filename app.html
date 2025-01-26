@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>my app</title>
+</head>
+<style>
+  *{
+  margin: 0px;
+  padding: 0px;
+  
+}
+
+body{
+  background: wheat;
+  color: white;
+  
+}
+
+
+.encabezado{
+  background: navy;
+  width: auto;
+  height: 190px;
+  border-bottom-right-radius: 25px;
+  border-bottom-left-radius: 25px;
+  text-align: center;
+  color: papayawhip;
+}
+
+.nombreApp h3 {
+  position: relative;
+  top: 100px;
+  font-size: 20px;
+}
+
+.nombreApp h1{
+  position: relative;
+  top: 50px;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-size: 50px;
+  animation-name: animacion;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  
+}
+
+@keyframes animacion{
+  0%{color: red;}
+  100%{color: green;}
+}
+
+.div-centralizado{
+  background: orangered;
+  width: 150px;
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  border-radius: 100px;
+  border: 2px solid black;
+  position: relative;
+  top: 100px;
+}
+
+.div-centralizado h2 {
+  font-size: 50px;
+  color: white;
+}
+
+.caja{
+  background: navy;
+  width: auto;
+  height: 84px;
+  position: relative;
+  top: 150px;
+  padding: 20px;
+  border-top-right-radius: 25px;
+  border-top-left-radius: 25px;
+}
+
+.input{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+}
+
+.input input{
+  background: navajowhite;
+  width: 100px;
+  height: 50px;
+  margin: 5px;
+  border-radius: 10px;
+  border: none;
+  color: black;
+  font-size: 30px;
+  text-align: center;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  position: relative;
+  top: 20px;
+  border: 2px solid black;
+  
+}
+
+.input button{
+  background: orange;
+  width: 80px;
+  height: 50px;
+  border: none;
+  border-radius: 20px;
+  position: relative;
+  top: 20px;
+  left: 10px;
+  font-size: 20px;
+}
+
+.respuesta{
+  background: gray;
+  width: 250px;
+  height: 50px;
+  border: 2px solid black;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  top: 155px;
+  border-top-right-radius: 25px;
+  border-top-left-radius: 25px;
+}
+</style>
+<body>
+<main class="pantalla">
+  <div class="encabezado">
+    <div class="nombreApp">
+      <h1>Mi Juego</h1>
+      <h3> adivina el número del 1 al 10</h3>
+    </div>
+  </div>
+  
+   <div class="contenido div-centralizado">
+     <h2 id="resultado">0</h2>
+   </div>
+  
+   <div class="respuesta" id="tablero">
+     <h3 id=mensaje></h3>
+   </div>
+   
+   <div class="caja">
+     <div class="input">
+     <input id="numeros" type="number">
+     <button id="boton" type="submit">aceptar</button>
+     </div>
+   </div>
+</main>
+</body>
+<script>
+  const boton = document.getElementById('boton')
+const numero = document.getElementById('numeros')
+const resultado = document.getElementById('resultado')
+const mensaje = document.getElementById('mensaje')
+const tablero = document.getElementById('tablero')
+
+let ancho = screen.width;
+let alto = screen.height;
+
+if (ancho <= 768) {
+  console.log("Es un teléfono. Tamaño:", ancho + "x" + alto);
+} else {
+  console.log("Es una computadora. Tamaño:", ancho + "x" + alto);
+}
+
+boton.addEventListener('click',function () {
+  let numeroInput = numero.value;
+
+let generador = Math.floor(Math.random()*10 + 1);
+
+resultado.textContent = generador;
+
+
+if (numeroInput == generador) {
+  mensaje.textContent = 'felicidades lo adivinaste '
+  tablero.style.background = 'green';
+  
+} else {
+  mensaje.textContent = 'ups intenta de nuevo '
+  tablero.style.background = 'red';
+}
+if (numeroInput > 10 ) {
+  mensaje.textContent = 'introduce el número del 1 al 10';
+  tablero.style.background = 'red';
+  tablero.style.color = 'black';
+  resultado.textContent = '0';
+}
+console.log('ingreso ' + numeroInput + ' , ' + 'resultado ' + generador)
+
+//termina el código 
+})
+
+</script>
+</html>
