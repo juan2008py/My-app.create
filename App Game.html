@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mi Juego</title>
+  
+  <style>
+  	*{
+ padding: 0px;
+ margin: 0px;
+}
+
+body{
+	background: #0D21FF;
+	color: white;
+}
+
+header{
+	background: #050F7F;
+	width: auto;
+	height: 150px;
+	border-bottom-right-radius: 25px;
+	border-bottom-left-radius: 25px;
+	text-align: center;
+}
+
+header button{
+	position: relative;
+	top: 50px;
+	width: 100px;
+	height: 30px;
+}
+
+#porta_nombre{
+	background: whitesmoke;
+	width: 300px;
+	height: 30px;
+	position: relative;
+	align-items: center;
+	justify-content: center;
+	margin: auto;
+	border: 2px solid dimgray;
+	text-align: center;
+	top: 50px;
+	color: black;
+}
+
+#cuadro{
+	background: wheat;
+	width: 300px;
+	height: 300px;
+	position: relative;
+	align-items: center;
+	justify-content: center;
+	margin: auto;
+	top: 50px;
+	color: black;
+	text-align: center;
+}
+
+#modo{
+	width: auto;
+	height: auto;
+	text-align: center;
+	position: relative;
+	top: 20px;
+}
+  </style>
+</head>
+<body>
+  <main>
+  	<header class="cabeza">
+  		<h1> juego de Verdad o Reto</h1>
+  		
+  		<button id="boton">Jugar</button>
+  		
+  	</header>
+  	<h1 id="modo"></h1>
+  	<div id="porta_nombre">
+  		<h2 id="nombre_elegido"></h2>
+  	</div>
+  	
+  	<div id="cuadro">
+  		<h2 id="tarjeta"></h2>
+  	</div>
+  </main>
+ </body>
+<script>
+	// agregar elementos 
+const boton = document.getElementById('boton')
+const elegido = document.getElementById('nombre_elegido')
+const tarjeta = document.getElementById('tarjeta')
+const modo = document.getElementById('modo')
+
+boton.addEventListener('click', function () {
+  const cantidad_jugadores = parseInt(prompt('cantidad de jugadores'))
+   let preguntas = {
+       reto: [
+    'Saltar 20 veces',
+    'Tomar 3 vasos de agua',
+    'Bailar sin música por 30 segundos',
+    'Hablar con acento extranjero por 1 minuto',
+    'Hacer 10 flexiones',
+    'Enviar un mensaje de "hola" a tu contacto más reciente',
+    'Comer una cucharada de limón sin hacer gestos',
+    'Cantar una canción en voz alta',
+    'Imitar a un compañero hasta que alguien adivine quién es',
+    'Hacer una pose graciosa y mantenerla por 15 segundos',
+    'Pedirle un abrazo al jugador a tu derecha',
+    'Hacer una rima con el nombre del jugador a tu izquierda',
+    'Ponerte algo en la cabeza y mantenerlo por 1 minuto',
+    'Dibujar un gato con los ojos cerrados',
+    'Hablar sin usar la letra "A" por 30 segundos'
+],
+verdad: [
+    'Di algo de tus defectos a todos',
+    'Contar algo de ti que los otros te pidan',
+    '¿Cuál es tu mayor miedo?',
+    'Si pudieras cambiar algo de tu pasado, ¿qué sería?',
+    '¿Qué es lo más vergonzoso que te ha pasado?',
+    '¿Has mentido en este juego alguna vez?',
+    '¿Cuál es el peor regalo que has recibido?',
+    'Si tuvieras que cambiar tu nombre, ¿cuál elegirías?',
+    '¿Cuál es la última mentira que dijiste?',
+    'Si pudieras ser otra persona por un día, ¿quién serías?',
+    '¿Qué es lo más loco que has hecho en la escuela?',
+    '¿Alguna vez te han atrapado haciendo algo vergonzoso?',
+    'Si tuvieras que casarte con alguien de esta sala, ¿quién sería?',
+    '¿Cuál es el secreto más grande que has guardado?',
+    '¿A qué famoso te gustaría conocer y por qué?'
+]};
+  // guardar información 
+  let jugadores_lista = [];
+  let resultado_jugador = "";
+  let tarjeta_resultado = "";
+  console.log('nombres guardados ' + jugadores_lista)
+  
+  let elegir_modo = prompt('verdad o reto').toLowerCase().trim()
+  
+
+  //agregar jugadores 
+ 	let i = 0;
+while (i < cantidad_jugadores) {
+	let agregar = prompt('tu nombre').toUpperCase().trim()
+	jugadores_lista.push(agregar)
+	
+	i++;
+	}
+	
+	console.log(jugadores_lista)
+	console.log(typeof jugadores_lista)
+	
+	// aleatorizar tarjeta 
+	
+	let numero_modo = Math.floor(Math.random()*2 + 1)
+	
+	let modo_resultado = elegir_modo;
+	
+	let modo_tarjeta = '';
+	
+	if (modo_resultado == 'verdad') {
+		modo_tarjeta = preguntas.verdad
+		modo.textContent = 'Verdad'
+	} else if (modo_resultado == 'reto') {
+		modo_tarjeta = preguntas.reto
+		modo.textContent = 'Reto'
+	} else {
+   alert('agrega verdad o reto')
+	}
+   
+   let numero_tarjeta = Math.floor(Math.random()* modo_tarjeta.length)
+   
+   
+   tarjeta_resultado = modo_tarjeta[numero_tarjeta]
+   
+   console.log(tarjeta_resultado)
+   
+     //aleatorizar jugador 
+  
+  let numero_jugador = Math.floor(Math.random()* jugadores_lista.length)
+  
+   resultado_jugador = jugadores_lista[numero_jugador]
+   
+   console.log('jugador: ' + resultado_jugador)
+   
+   
+   
+   elegido.textContent = resultado_jugador;
+   tarjeta.textContent = tarjeta_resultado;
+  
+  
+  
+  
+});
+</script>
+  </html>
